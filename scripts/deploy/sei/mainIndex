@@ -1,0 +1,6 @@
+import { taskRunner } from '../base'
+import { neutronMainnetConfig } from './config_mainnet._'
+
+void (async function () {
+  await taskRunner(neutronMainnetConfig)
+})()

@@ -1,0 +1,36 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "deploy:sei-testnet": "yarn build && node build/deploy/sei/testIndex.js",
+    "deploy:sei-mainnet": "yarn build && node build/deploy/sei/mainnetIndex.js",
+    "generate-types": "yarn rust-schema && tsc --project codegen-tsconfig.json && rm -rf types/generated && node build/codegen && node build/codegen/insertIgnores.js && yarn format",
+    "rust-schema": "cd ../ && cargo make generate-all-schemas && cd scripts",
+    "compile-wasm": "cd ../ && cargo make rust-optimizer && cd scripts",
+    "build": "tsc",
+    "lint": "yarn format-check && eslint . && yarn build",
+    "format": "prettier --write .",
+    "format-check": "prettier --ignore-path .gitignore --check ."
+  },
+  "dependencies": {
+    "@cosmjs/cosmwasm-stargate": "^0.30.1",
+    "@cosmjs/proto-signing": "^0.30.1",
+    "@cosmjs/stargate": "^0.30.1",
+    "@cosmwasm/ts-codegen": "^0.30.1",
+    "chalk": "4.1.2",
+    "cosmjs-types": "^0.8.0",
+    "prepend-file": "^2.0.1",
+    "ts-codegen": "^0.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.2.5",
+    "@typescript-eslint/eslint-plugin": "^5.59.9",
+    "@typescript-eslint/parser": "^5.59.9",
+    "cosmjs-types": "^0.8.0",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.1.3"
+  }
+}

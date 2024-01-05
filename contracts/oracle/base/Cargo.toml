@@ -1,0 +1,32 @@
+[package]
+name          = "kawa-oracle-base"
+version       = { workspace = true }
+authors       = { workspace = true }
+edition       = { workspace = true }
+license       = { workspace = true }
+repository    = { workspace = true }
+homepage      = { workspace = true }
+documentation = { workspace = true }
+keywords      = { workspace = true }
+
+[lib]
+doctest = false
+
+[profile.release]
+overflow-checks  = true
+
+[features]
+pyth        = ["pyth-sdk-cw"]
+# for more explicit tests, cargo test --features=backtraces
+backtraces  = ["cosmwasm-std/backtraces"]
+
+[dependencies]
+cosmwasm-std        = { workspace = true }
+cw2                 = { workspace = true }
+cw-storage-plus     = { workspace = true }
+mars-owner          = { workspace = true }
+kawa-lending-types = { workspace = true }
+schemars            = { workspace = true }
+serde               = { workspace = true }
+thiserror           = { workspace = true }
+pyth-sdk-cw         = { workspace = true, optional = true }

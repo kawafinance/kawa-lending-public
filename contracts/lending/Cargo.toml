@@ -1,0 +1,37 @@
+[package]
+name          = "kawa-lending"
+description   = "A smart contract that manages asset deposit, borrowing, and liquidations"
+version       = { workspace = true }
+authors       = { workspace = true }
+edition       = { workspace = true }
+license       = { workspace = true }
+repository    = { workspace = true }
+homepage      = { workspace = true }
+documentation = { workspace = true }
+keywords      = { workspace = true }
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+doctest = false
+
+[profile.release]
+overflow-checks  = true
+
+[features]
+# for more explicit tests, cargo test --features=backtraces
+backtraces = ["cosmwasm-std/backtraces"]
+
+[dependencies]
+cosmwasm-std        = { workspace = true }
+cw2                 = { workspace = true }
+cw-storage-plus     = { workspace = true }
+cw-utils            = { workspace = true }
+kawa-health         = { workspace = true }
+mars-owner          = { workspace = true }
+kawa-lending-types = { workspace = true }
+kawa-utils          = { workspace = true }
+thiserror           = { workspace = true }
+
+[dev-dependencies]
+cosmwasm-schema = { workspace = true }
+kawa-testing    = { workspace = true }

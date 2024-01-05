@@ -1,0 +1,37 @@
+[package]
+name          = "kawa-integration-tests"
+version       = { workspace = true }
+authors       = { workspace = true }
+edition       = { workspace = true }
+license       = { workspace = true }
+repository    = { workspace = true }
+homepage      = { workspace = true }
+documentation = { workspace = true }
+keywords      = { workspace = true }
+
+[lib]
+crate-type = [
+    "cdylib",
+    "rlib",
+]
+doctest = false
+
+[features]
+# for more explicit tests, cargo test --features=backtraces
+backtraces = [
+    "cosmwasm-std/backtraces",
+]
+
+[dev-dependencies]
+anyhow                         = { workspace = true }
+cosmwasm-std                   = { workspace = true }
+cw-multi-test                  = { workspace = true }
+cw-it                          = { workspace = true, features = ["osmosis-test-tube"] }
+kawa-oracle-base               = { workspace = true }
+kawa-lending                   = { workspace = true }
+kawa-lending-types             = { workspace = true }
+kawa-testing                   = { workspace = true }
+kawa-utils                     = { workspace = true }
+osmosis-std                    = { workspace = true }
+osmosis-test-tube              = { workspace = true }
+serde                          = { workspace = true }

@@ -1,0 +1,40 @@
+[package]
+name          = "kawa-testing"
+description   = "Utilities for testing Kawa lending contracts"
+version       = { workspace = true }
+authors       = { workspace = true }
+edition       = { workspace = true }
+license       = { workspace = true }
+repository    = { workspace = true }
+homepage      = { workspace = true }
+documentation = { workspace = true }
+keywords      = { workspace = true }
+
+[lib]
+doctest = false
+
+[features]
+default = []
+# for quicker tests, cargo test --lib
+# for more explicit tests, cargo test --features=backtraces
+astroport = ["cw-it/astroport", "dep:astroport"]
+osmosis-test-tube = ["cw-it/osmosis-test-tube"]
+backtraces = ["cosmwasm-std/backtraces", "osmosis-std/backtraces"]
+
+[dependencies]
+anyhow                         = { workspace = true }
+astroport                      = { workspace = true, optional = true }
+cosmwasm-std                   = { workspace = true }
+osmosis-std                    = { workspace = true }
+kawa-address-provider          = { workspace = true }
+kawa-oracle-wasm               = { workspace = true }
+mars-owner                     = { workspace = true }
+kawa-lending                  = { workspace = true }
+kawa-lending-types             = { workspace = true }
+prost                          = { workspace = true }
+pyth-sdk-cw                    = { workspace = true }
+
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+cw-it                  = { workspace = true, features = ["multi-test"] }
+cw-multi-test          = { workspace = true }
